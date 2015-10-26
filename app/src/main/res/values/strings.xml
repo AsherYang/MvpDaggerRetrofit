@@ -5,4 +5,5 @@
     <string name="btn_click">Click</string>
     <string name="btn_register">register</string>
     <string name="btn_login">login</string>
+    <string name="github_name">gitHub name</string>
 </resources>

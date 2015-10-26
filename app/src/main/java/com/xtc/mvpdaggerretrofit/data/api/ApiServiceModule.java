@@ -23,7 +23,7 @@ import retrofit.client.OkClient;
 @Module
 public class ApiServiceModule {
     // ENDPOINT 为BASE_URL
-    private static final String ENDPOINT = "";
+    private static final String ENDPOINT = "https://api.github.com";
 
     @Provides
     @Singleton

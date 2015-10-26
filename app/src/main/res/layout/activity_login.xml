@@ -8,7 +8,8 @@
     <EditText
         android:id="@+id/username"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:hint="@string/github_name"/>
 
     <EditText
         android:id="@+id/password"

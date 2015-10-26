@@ -8,6 +8,7 @@ import android.widget.Toast;
 import com.xtc.mvpdaggerretrofit.AppComponent;
 import com.xtc.mvpdaggerretrofit.R;
 import com.xtc.mvpdaggerretrofit.data.AppServiceModule;
+import com.xtc.mvpdaggerretrofit.data.api.ApiService;
 import com.xtc.mvpdaggerretrofit.model.User;
 import com.xtc.mvpdaggerretrofit.ui.common.BaseActivity;
 
@@ -33,12 +34,18 @@ public class LoginActivity extends BaseActivity implements LoginView {
     @Inject
     LoginPresenter loginPresenter;
 
+    /** 该user 是通过Modules从AppServiceModule处依赖而来,可以直接@Inject初始化 */
     @Inject
     User user;
 
+    /** 该apiService 是通过dependencies从AppComponent再从ApiServiceModule处依赖而来  */
+    @Inject
+    ApiService apiService;
+
     @OnClick(R.id.register)
     void registerBtnClick() {
-        loginPresenter.onRegisterBtnOnClick();
+        String user = username.getText().toString();
+        loginPresenter.onRegisterBtnOnClick(user, apiService);
     }
 
     @OnClick(R.id.login)
@@ -67,8 +74,8 @@ public class LoginActivity extends BaseActivity implements LoginView {
 
     @Override
     public void showMessage(String message) {
-        String msg = message + "\t" + username.getText().toString() + "\t" + password.getText().toString();
+//        String msg = message + "\t" + username.getText().toString() + "\t" + password.getText().toString();
 //        String msg = user.getName();
-        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 }
