@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">MvpDaggerRetrofit</string>
+    <string name="hello_world">Hello world!</string>
+
+    <string name="btn_click">Click</string>
+    <string name="btn_register">register</string>
+    <string name="btn_login">login</string>
+</resources>
