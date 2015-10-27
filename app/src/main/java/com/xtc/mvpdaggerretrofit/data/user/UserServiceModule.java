@@ -1,4 +1,4 @@
-package com.xtc.mvpdaggerretrofit.data;
+package com.xtc.mvpdaggerretrofit.data.user;
 
 import com.xtc.mvpdaggerretrofit.model.User;
 import dagger.Module;
@@ -8,7 +8,7 @@ import dagger.Provides;
  * Created by ouyangfan on 2015/10/26.
  */
 @Module
-public class AppServiceModule {
+public class UserServiceModule {
     @Provides
     User provideUser() {
         User user = new User();
