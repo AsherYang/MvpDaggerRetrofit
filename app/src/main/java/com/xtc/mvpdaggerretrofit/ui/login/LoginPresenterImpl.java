@@ -16,7 +16,7 @@ public class LoginPresenterImpl implements LoginPresenter {
 
     @Override
     public void onRegisterBtnOnClick(GitUserBean userBean) {
-        String msg = "retrofit success, userName = = " + userBean.getName();
+        String msg = "retrofit success, userName = " + userBean.getName();
         showMsg(msg);
     }
 
