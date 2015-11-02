@@ -1,6 +1,7 @@
 package com.xtc.mvpdaggerretrofit.ui.login;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -10,11 +11,10 @@ import com.xtc.mvpdaggerretrofit.R;
 import com.xtc.mvpdaggerretrofit.data.api.ApiService;
 import com.xtc.mvpdaggerretrofit.data.gituser.GitUserServiceModule;
 import com.xtc.mvpdaggerretrofit.data.gituser.IGetGitUser;
-import com.xtc.mvpdaggerretrofit.data.gituser.OnGetGitUserListener;
 import com.xtc.mvpdaggerretrofit.data.user.UserServiceModule;
-import com.xtc.mvpdaggerretrofit.model.GitUserBean;
 import com.xtc.mvpdaggerretrofit.model.User;
 import com.xtc.mvpdaggerretrofit.ui.common.BaseActivity;
+import com.xtc.mvpdaggerretrofit.ui.customview.MetaballView;
 
 import javax.inject.Inject;
 
@@ -34,6 +34,8 @@ public class LoginActivity extends BaseActivity implements LoginView {
     Button register;
     @Bind(R.id.login)
     Button login;
+    @Bind(R.id.metaball_view)
+    MetaballView metaballView;
 
     @Inject
     LoginPresenter loginPresenter;
@@ -61,7 +63,7 @@ public class LoginActivity extends BaseActivity implements LoginView {
     @OnClick(R.id.register)
     void registerBtnClick() {
         String user = username.getText().toString();
-        gitUser.getGitUserFromNet(user, apiService, mOnGetGitUserListener);
+        loginPresenter.onRegisterBtnOnClick(user, gitUser, apiService);
     }
 
     @OnClick(R.id.login)
@@ -91,6 +93,14 @@ public class LoginActivity extends BaseActivity implements LoginView {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
+        initView();
+    }
+
+    /**
+     * 初始化view
+     */
+    private void initView() {
+        metaballView.setPaintMode(1);
     }
 
     /**
@@ -100,23 +110,23 @@ public class LoginActivity extends BaseActivity implements LoginView {
      */
     @Override
     public void showMessage(String message) {
-//        String msg = message + "\t" + username.getText().toString() + "\t" + password.getText().toString();
-//        String msg = user.getName();
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
     /**
-     * 监听Retrofit 返回的网络结果
+     * 显示进度条
      */
-    private OnGetGitUserListener mOnGetGitUserListener = new OnGetGitUserListener() {
-        @Override
-        public void onSuccess(GitUserBean gitUserBean) {
-            loginPresenter.onRegisterBtnOnClick(gitUserBean);
-        }
+    @Override
+    public void showProgress() {
+        metaballView.setVisibility(View.VISIBLE);
+    }
 
-        @Override
-        public void onError(String error) {
-            showMessage(error);
-        }
-    };
+    /**
+     * 隐藏进度条
+     */
+    @Override
+    public void hideProgress() {
+        metaballView.setVisibility(View.GONE);
+    }
+
 }

@@ -5,4 +5,6 @@ package com.xtc.mvpdaggerretrofit.ui.login;
  */
 public interface LoginView {
     public void showMessage(String message);
+    public void showProgress();
+    public void hideProgress();
 }
