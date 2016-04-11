@@ -15,3 +15,6 @@ this is a demo used by MVP,Dagger,Retrofit.
     + 本类处理逻辑是按照`Mvp+Dagger2+Retrofit`处理。(这节才是**重点**)
     + `regiter`按钮是通过`retrofit`网络框架获取gitHub上对应用户名的信息。
     + `login`按钮是调用获取其他Module中定义的数据,演示传递数据。
+3. 代码结构
+    + `Presenter`是业务逻辑处理接口，处理复杂业务逻辑。
+    + `View`是界面逻辑处理接口，处理界面操作逻辑。
